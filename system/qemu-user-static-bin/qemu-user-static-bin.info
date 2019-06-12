@@ -1,0 +1,14 @@
+PRGNAM="qemu-user-static-bin"
+VERSION="9.0"
+HOMEPAGE="http://wiki.qemu.org"
+DOWNLOAD="https://ftp.debian.org/debian/pool/main/q/qemu/qemu-user-static_9.0.0~rc2+ds-1_i386.deb \
+          https://ftp.debian.org/debian/pool/main/q/qemu/qemu-user-static_9.0.0~rc2+ds-1_armhf.deb"
+MD5SUM="ee60f1df18cf5132d13747b59bb2cfcd \
+        2dc059d4acf9115ca009aea37256a185"
+DOWNLOAD_x86_64="https://ftp.debian.org/debian/pool/main/q/qemu/qemu-user-static_9.0.0~rc2+ds-1_amd64.deb \
+                 https://ftp.debian.org/debian/pool/main/q/qemu/qemu-user-static_9.0.0~rc2+ds-1_arm64.deb"
+MD5SUM_x86_64="b408ed62b5f57e7e6b036728f97a5a43 \
+               22fdabfb904d03f7743f607ab57e9e0e"
+REQUIRES="binfmt-support"
+MAINTAINER="Andrew Clemons"
+EMAIL="andrew.clemons@gmail.com"
