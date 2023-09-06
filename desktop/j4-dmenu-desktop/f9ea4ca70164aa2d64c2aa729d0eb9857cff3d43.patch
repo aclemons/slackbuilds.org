@@ -1,0 +1,29 @@
+From f9ea4ca70164aa2d64c2aa729d0eb9857cff3d43 Mon Sep 17 00:00:00 2001
+From: Sam James <sam@gentoo.org>
+Date: Tue, 18 Apr 2023 11:08:53 +0100
+Subject: [PATCH] Fix build with GCC 13
+
+GCC 13 (as usual for new compiler releases) shuffles around some internal includes so some
+are no longer transitively included.
+
+See https://gnu.org/software/gcc/gcc-13/porting_to.html.
+
+Bug: https://bugs.gentoo.org/895200
+---
+ src/Application.hh | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/Application.hh b/src/Application.hh
+index d4118ec..7fb09b2 100644
+--- a/src/Application.hh
++++ b/src/Application.hh
+@@ -19,7 +19,8 @@
+ #define APPLICATION_DEF
+ 
+ #include <algorithm>
+-#include <string.h>
++#include <cstdint>
++#include <cstring>
+ #include <unistd.h>
+ 
+ #include "Utilities.hh"
