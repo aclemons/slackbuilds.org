@@ -3,8 +3,10 @@ VERSION="2.59.0"
 HOMEPAGE="https://cli.github.com/"
 DOWNLOAD="https://github.com/cli/cli/releases/download/v2.59.0/gh_2.59.0_linux_386.deb"
 MD5SUM="22b9928e36d52f363bfe9b9e1fc29962"
-DOWNLOAD_x86_64="https://github.com/cli/cli/releases/download/v2.59.0/gh_2.59.0_linux_amd64.deb"
-MD5SUM_x86_64="199004af911d904143cc61a35dc27443"
+DOWNLOAD_x86_64="https://github.com/cli/cli/releases/download/v2.59.0/gh_2.59.0_linux_amd64.deb \
+                 https://github.com/cli/cli/releases/download/v2.59.0/gh_2.59.0_linux_arm64.deb"
+MD5SUM_x86_64="199004af911d904143cc61a35dc27443 \
+               d277ddb4ed5dbf7f88f0489e48736d98"
 REQUIRES=""
 MAINTAINER="Ebben Aries"
 EMAIL="slackbuilds@dscp.org"
