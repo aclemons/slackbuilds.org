@@ -81,6 +81,10 @@ find -L . \
 
 patch < $CWD/Makefile.patch
 
+sed -i '/^LUA=/s/$/5.1/' Makefile
+sed -i '/^INCLUDES=/s,local/,,' Makefile
+sed -i '/^INCLUDES=/s,$,/lua5.1,' Makefile
+
 CFLAGS="$SLKCFLAGS" \
 make
 make install DESTDIR=$PKG
