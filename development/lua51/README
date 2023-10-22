@@ -1,0 +1,7 @@
+Lua is a powerful, efficient, lightweight, embeddable scripting
+language. It supports procedural programming, object-oriented
+programming, functional programming, data-driven programming, and
+data description.
+
+This package is for the 5.1 branch of lua. There are also packages
+for the 5.2, 5.3 and 5.4 branches of lua on slackbuilds.org.
