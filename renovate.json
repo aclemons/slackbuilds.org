@@ -6,7 +6,9 @@
     ":separateMultipleMajorReleases",
     ":separatePatchReleases",
     "regexManagers:githubActionsVersions",
-    "schedule:earlyMondays"
+    "schedule:earlyMondays",
+    "regexManagers:githubActionsVersions",
+    "regexManagers:gitlabPipelineVersions"
   ],
   "ignoreTests": false,
   "rangeStrategy": "pin",
