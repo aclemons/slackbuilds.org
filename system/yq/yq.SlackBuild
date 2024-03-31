@@ -41,6 +41,7 @@ fi
 
 case "$ARCH" in
   x86_64) GOARCH=amd64 ;;
+ aarch64) GOARCH=arm64 ;;
     i586) GOARCH=386 ;;
        *) GOARCH=$ARCH ;;
 esac
