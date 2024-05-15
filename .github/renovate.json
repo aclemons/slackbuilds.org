@@ -6,8 +6,8 @@
     ":separateMultipleMajorReleases",
     ":separatePatchReleases",
     "schedule:earlyMondays",
-    "regexManagers:githubActionsVersions",
-    "regexManagers:gitlabPipelineVersions"
+    "customManagers:githubActionsVersions",
+    "customManagers:gitlabPipelineVersions"
   ],
   "ignoreTests": false,
   "rangeStrategy": "pin",
@@ -15,14 +15,19 @@
   "packageRules": [
     {
       "description": "Disable go updates.",
-      "matchManagers": ["gomod"],
+      "matchManagers": [
+        "gomod"
+      ],
       "enabled": false
     }
   ],
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^\\.github\\/workflows\\/ci\\.yml$", "^\\.gitlab-ci\\.yml"],
+      "fileMatch": [
+        "^\\.github\\/workflows\\/ci\\.yml$",
+        "^\\.gitlab-ci\\.yml"
+      ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: (?:lookupName|packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+SBO_MAINTAINER_TOOLS_IMAGE\\s*:\\s*[\"']?aclemons/sbo-maintainer-tools:(?<currentValue>.+?)@(?<currentDigest>sha256:[a-f0-9]+)[\"']?\\s"
       ]
