@@ -128,7 +128,7 @@ jobs:
 
       - name: Look up dependencies
         id: get_deps
-        uses: fjogeleit/http-request-action@8af28031091191b8e41afb287e0e56fce753c7b4 # v1.15.4
+        uses: fjogeleit/http-request-action@ed8a1c36dbb357b7c5dd869722ae4d0018ff07e8 # v1.15.5
         with:
           url: 'https://slackbuilds.org/revdeps.php?q=${{ env.PACKAGE_NAME }}'
           method: 'GET'
