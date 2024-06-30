@@ -77,6 +77,11 @@ rm -rf $SRCNAM-$VERSION
 tar xvf $CWD/$SRCNAM-$VERSION.tar.gz
 cd $SRCNAM-$VERSION
 chown -R root:root .
+(
+  cd awscli
+  zcat $CWD/7b4c26e721936b185681cb10010ded4026295bd4.patch.gz | patch -p1
+  zcat $CWD/0a6d8e3c6325da395a04227599cfa292190d6841.patch.gz | patch -p1
+)
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
   -o -perm 511 \) -exec chmod 755 {} \; -o \
