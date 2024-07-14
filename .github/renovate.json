@@ -4,27 +4,44 @@
     "config:best-practices",
     ":separateMajorReleases",
     ":separateMultipleMajorReleases",
-    ":separatePatchReleases",
-    "schedule:earlyMondays",
-    "regexManagers:githubActionsVersions",
-    "regexManagers:gitlabPipelineVersions"
+    ":separatePatchReleases"
   ],
   "ignoreTests": false,
-  "rangeStrategy": "pin",
-  "timezone": "Asia/Tokyo",
   "packageRules": [
     {
-      "description": "Disable go updates.",
-      "matchManagers": ["gomod"],
+      "description": "Disable updates for docker, github actions, gitlab ci, and go mod files.",
+      "matchManagers": ["dockerfile", "github-actions", "gitlabci", "gomod"],
       "enabled": false
     }
   ],
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^\\.github\\/workflows\\/ci\\.yml$", "^\\.gitlab-ci\\.yml"],
+      "datasourceTemplate": "repology",
+      "depNameTemplate": "alpine_edge/tor",
+      "fileMatch": [
+        "^network/tor/tor\\.SlackBuild$",
+        "^network/tor/tor\\.info$"
+      ],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: (?:lookupName|packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+SBO_MAINTAINER_TOOLS_IMAGE\\s*:\\s*[\"']?aclemons/sbo-maintainer-tools:(?<currentValue>.+?)@(?<currentDigest>sha256:[a-f0-9]+)[\"']?\\s"
+        "VERSION=\\${VERSION:-(?<currentValue>.*?)}",
+        "VERSION=\"(?<currentValue>.*?)\"",
+        "torproject.org/tor-(?<currentValue>.*?)\\.tar\\.gz"
+      ],
+      "versioningTemplate": "loose"
+    },
+    {
+      "customType": "regex",
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "NordSecurity/nordvpn-linux",
+      "fileMatch": [
+        "^network/nordvpn/nordvpn\\.SlackBuild$",
+        "^network/nordvpn/nordvpn\\.info$"
+      ],
+      "matchStrings": [
+        "VERSION=\\${VERSION:-(?<currentValue>.*?)}",
+        "VERSION=\"(?<currentValue>.*?)\"",
+        "pool/main/nordvpn_(?<currentValue>.*?)_"
       ]
     }
   ]
