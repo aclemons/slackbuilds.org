@@ -10,9 +10,9 @@ workflow:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
 
 default:
-  image: docker:25.0.5@sha256:5df5c9d278aa935a5d16534e5f4f5d1c2de13901d29ff69ce3930a47c562cd31
+  image: docker:27.1.1@sha256:a690693976550aba640859bb3c3c29eb323a4f53f684c99b2a8282b14a22308b
   services:
-    - docker:25.0.5-dind@sha256:5df5c9d278aa935a5d16534e5f4f5d1c2de13901d29ff69ce3930a47c562cd31
+    - docker:27.1.1-dind@sha256:a690693976550aba640859bb3c3c29eb323a4f53f684c99b2a8282b14a22308b
 
 pr-checks:
   script: |
