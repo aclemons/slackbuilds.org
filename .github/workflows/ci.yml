@@ -33,7 +33,7 @@ jobs:
 
       - name: Get slackbuild directories which have changes.
         id: changed-dirs
-        uses: tj-actions/changed-files@20576b4b9ed46d41e2d45a2256e5e2316dde6834 # v43.0.1
+        uses: tj-actions/changed-files@c65cd883420fd2eb864698a825fc4162dd94482c # v44.5.7
         with:
           base_sha: ${{ github.event.pull_request.base.sha }}
           dir_names: true
