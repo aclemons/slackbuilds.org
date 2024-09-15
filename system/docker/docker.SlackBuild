@@ -26,8 +26,8 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=docker
-VERSION=${VERSION:-27.2.0}
-GITHASH=${GITHASH:-3ab5c7d}
+VERSION=${VERSION:-27.2.1}
+GITHASH=${GITHASH:-8b539b8df24032dabeaaa099cf1d0535ef0286a3}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -71,14 +71,17 @@ ln -sf "$(pwd)" src/github.com/docker/docker
 
 AUTO_GOPATH=1 \
 GO111MODULE=off \
+CGO_ENABLED=1 \
 DOCKER_GITCOMMIT=$GITHASH \
 DOCKER_BUILDTAGS="seccomp" \
 VERSION=$VERSION \
 GOPATH="$(pwd)" \
 ./hack/make.sh dynbinary
 
-install -D -m 0755 bundles/dynbinary-daemon/dockerd \
+install -D -m 0755 -s bundles/dynbinary-daemon/dockerd \
   $PKG/usr/bin/dockerd
+install -D -m 0755 -s bundles/dynbinary-daemon/docker-proxy \
+  $PKG/usr/bin/docker-proxy
 
 # Integrate required components.
 ln -s runc $PKG/usr/bin/docker-runc
