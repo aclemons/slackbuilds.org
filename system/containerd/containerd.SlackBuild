@@ -26,8 +26,8 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=containerd
-VERSION=${VERSION:-1.7.21}
-GITHASH=${GITHASH:-472731909fa34bd7bc9c087e4c27943f9835f111}
+VERSION=${VERSION:-1.7.22}
+GITHASH=${GITHASH:-7f7fdf5fed64eb6a7caf99b3e12efcf9d60e311c}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -72,14 +72,24 @@ sed -i \
 
 mkdir build
 mv vendor build/src
-ln -sf $TMP/$PRGNAM-$VERSION build/src/github.com/containerd/containerd
+ln -sf "$(pwd)" build/src/github.com/containerd/containerd
 
-GO111MODULE=auto \
-make \
-  BUILDTAGS="seccomp" \
-  GIT_COMMIT=$GITHASH \
-  GOPATH=$TMP/$PRGNAM-$VERSION/build
+GO111MODULE=on \
+make SHIM_CGO_ENABLED=1 VERSION="v$VERSION" REVISION="$GITHASH" BUILDMODE=pie GOPATH="$(pwd)/build"
+GO111MODULE=on \
+make man
 make install DESTDIR=$PKG PREFIX=/usr
+
+install -d $PKG/usr/man/man5/
+install -Dm644 man/*.5 $PKG/usr/man/man5/
+install -d $PKG/usr/man/man8/
+install -Dm644 man/*.8 $PKG/usr/man/man8/
+
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+find $PKG/usr/man -type f -exec gzip -9 {} \;
+for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a README.md LICENSE NOTICE $PKG/usr/doc/$PRGNAM-$VERSION
