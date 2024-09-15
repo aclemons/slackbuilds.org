@@ -22,13 +22,11 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# 20220409 bkw: Modified by SlackBuilds.org, BUILD=2: strip binary.
-
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=docker-cli
-VERSION=${VERSION:-27.2.0}
-GITHASH=${GITHASH:-3ab42569583b58dbc6f167d842d5a3dd5972065f}
+VERSION=${VERSION:-27.2.1}
+GITHASH=${GITHASH:-9e34c9bb39efd8bf96d4ec044de454ef1f24c668}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -63,13 +61,13 @@ cd $SRCNAM-$VERSION
 chown -R root:root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
-  -o -perm 511 \) -exec chmod 755 {} \+ -o \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
-  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \+
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 mkdir build
 mv vendor build/src
-ln -sf $TMP/$SRCNAM-$VERSION build/src/github.com/docker/cli
+ln -sf "$(pwd)" build/src/github.com/docker/cli
 
 GO111MODULE=auto \
 DISABLE_WARN_OUTSIDE_CONTAINER=1 \
@@ -77,6 +75,10 @@ make dynbinary \
   GITCOMMIT=$GITHASH \
   VERSION=$VERSION \
   GOPATH=$TMP/$SRCNAM-$VERSION/build
+
+GO111MODULE=auto \
+DISABLE_WARN_OUTSIDE_CONTAINER=1 \
+make manpages
 
 install -D -m 0755 -s build/docker-linux-* $PKG/usr/bin/docker
 
@@ -86,6 +88,11 @@ install -D -m 0755 -s build/docker-linux-* $PKG/usr/bin/docker
   install -D -m 0644 zsh/_docker $PKG/usr/share/zsh/site-functions/_docker
   install -D -m 0644 fish/docker.fish $PKG/usr/share/fish/vendor_completions.d/docker.fish
 )
+
+install -Dm644 man/man1/* -t $PKG/usr/man/man1/
+
+find $PKG/usr/man -type f -exec gzip -9 {} \;
+for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a LICENSE NOTICE README.md $PKG/usr/doc/$PRGNAM-$VERSION
