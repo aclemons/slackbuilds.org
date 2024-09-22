@@ -83,7 +83,7 @@ jobs:
               fi
 
               page=$((page + 1))
-            done | sed '/^\./d' | sed -n '/[^\/][^\/]*\/[^\/][^\/]*\//p' | xargs -r -I xx dirname xx | sort -u
+            done | sed '/^\./d' | sed -n '/[^\/][^\/]*\/[^\/][^\/]*\//p' | xargs -r -I xx dirname xx | awk -F/ 'NF==2' | sort -u
           )"
 
           if [[ -z "$changed_projects" ]] ; then
