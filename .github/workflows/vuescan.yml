@@ -1,0 +1,48 @@
+---
+name: Sync vuescan MD5SUM values.
+
+"on":
+  workflow_dispatch:
+  schedule:
+    # run once everyday at 10:00 JST
+    - cron: '0 1 * * *'
+
+jobs:
+  vuescan:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          show-progress: false
+
+      - name: Update the md5sum of graphics/vuescan.
+        run: |
+          (
+            cd graphics/vuescan/
+            . vuescan.info
+            # shellcheck disable=SC2086
+            wget --content-disposition $DOWNLOAD_x86_64
+
+            MD5SUM_x86_64="$(md5sum vue*64*tgz | cut -f1 -d' ' | sed '$ s/^/               /')"
+            VERSION="$(find ./*.tgz | cut -d- -f2 | xargs -I xx basename -s .tgz xx | sort -u)"
+            rm -- *tgz*
+
+            sed -i "s/^VERSION.*/VERSION=\${VERSION:-$VERSION}/" vuescan.SlackBuild
+            sed -i "s/^VERSION.*/VERSION=\"$VERSION\"/" vuescan.info
+
+            perl -0777 -i -pe "s/(MD5SUM_x86_64=)\".*(REQUIRES)/\1\"$MD5SUM_x86_64\"\n\2/gs" vuescan.info
+            sed -i '/MD5SUM_x86_64=/s/$/ \\/' vuescan.info
+          )
+
+          if [[ $(git status --porcelain) ]]; then
+            BUILD="$(grep ^BUILD= graphics/vuescan/vuescan.SlackBuild | cut -d= -f2 | cut -d- -f2 | sed 's/}$//')"
+            BUILD=$((BUILD + 1))
+            sed -i "s/^BUILD.*/BUILD=\${BUILD:-$BUILD}/" graphics/vuescan/vuescan.SlackBuild
+          fi
+
+      - name: Push back updated md5sum.
+        uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842 # v5.0.1
+        with:
+          commit_message: 'graphics/vuescan: Updated MD5SUMs.'
