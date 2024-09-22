@@ -1,0 +1,115 @@
+---
+name: PR comment
+
+# Privileged companion to ci.yml ("PR checks"). It runs after the untrusted
+# check workflow completes and posts/updates the PR comments it produced.
+#
+# Security model: this workflow never checks out or executes fork code. It only
+# consumes the comment bodies from the check run's artifact as data, and it
+# derives the target PR number from the trusted workflow_run event (never from
+# the artifact), so a malicious fork cannot redirect comments to another PR.
+"on":
+  workflow_run:
+    workflows:
+      - PR checks
+    types:
+      - completed
+
+permissions: {}
+
+concurrency:
+  group: pr-comment-${{ github.event.workflow_run.head_sha }}
+  cancel-in-progress: true
+
+jobs:
+  comment:
+    name: Post PR comments
+    runs-on: ubuntu-24.04
+    # Only act on successful check runs that were triggered by a pull request.
+    if: >-
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+    permissions:
+      pull-requests: write
+      actions: read
+    steps:
+      - name: Download comment bodies
+        id: download
+        continue-on-error: true
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
+        with:
+          name: pr-comments
+          path: comments
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      - name: Post comments
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const dir = 'comments';
+
+            if (!fs.existsSync(dir)) {
+              core.info('No comment artifact found; nothing to do.');
+              return;
+            }
+
+            // Derive the PR number from the trusted workflow_run event, never
+            // from the (untrusted) artifact contents. This ties the comments to
+            // the exact commit that triggered the check.
+            const headSha = context.payload.workflow_run.head_sha;
+            const { owner, repo } = context.repo;
+
+            const associated =
+              await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                owner,
+                repo,
+                commit_sha: headSha,
+              });
+            const pr = associated.data.find((p) => p.state === 'open');
+            if (!pr) {
+              core.info(`No open PR found for ${headSha}; nothing to do.`);
+              return;
+            }
+            const issue_number = pr.number;
+
+            // Only known comment files, and cap the count to avoid abuse.
+            const allowed = /^(sbolint-|reverse-deps-|too-many-changes).*\.md$/;
+            const files = fs
+              .readdirSync(dir)
+              .filter((f) => allowed.test(f))
+              .slice(0, 50);
+
+            const existing = await github.paginate(
+              github.rest.issues.listComments,
+              { owner, repo, issue_number, per_page: 100 },
+            );
+
+            for (const file of files) {
+              const body = fs.readFileSync(path.join(dir, path.basename(file)), 'utf8');
+              const match = body.match(/<!-- (ci:[^\n>]+) -->/);
+              if (!match) {
+                core.warning(`No marker in ${file}; skipping.`);
+                continue;
+              }
+              const marker = `<!-- ${match[1]} -->`;
+              const found = existing.find((c) => (c.body || '').includes(marker));
+
+              if (found) {
+                await github.rest.issues.updateComment({
+                  owner,
+                  repo,
+                  comment_id: found.id,
+                  body,
+                });
+              } else {
+                await github.rest.issues.createComment({
+                  owner,
+                  repo,
+                  issue_number,
+                  body,
+                });
+              }
+            }
