@@ -3,12 +3,12 @@ VERSION="9.8.37"
 HOMEPAGE="https://www.hamrick.com"
 DOWNLOAD="https://d2bwyyzfw77fhf.cloudfront.net/vuea3298.tgz \
           https://d2bwyyzfw77fhf.cloudfront.net/vuex3298.tgz"
-MD5SUM="b6ff3f14d4991a1140800ce96203350f \
-        a1188b55b799344b4f3bec61ee0d63e6"
+MD5SUM="43d9d5008ae1a144f57f1b5d28d8f76a \
+        cacc688d1060033ec913295269654332"
 DOWNLOAD_x86_64="https://d2bwyyzfw77fhf.cloudfront.net/vuea6498.tgz \
                  https://d2bwyyzfw77fhf.cloudfront.net/vuex6498.tgz"
-MD5SUM_x86_64="084f000f95a300fe6fb2579059f3a5d1 \
-               a247029545ac0f8a0605d53275a3fec5"
+MD5SUM_x86_64="43d9d5008ae1a144f57f1b5d28d8f76a \
+               cacc688d1060033ec913295269654332"
 REQUIRES=""
 MAINTAINER="Andrew Clemons"
 EMAIL="andrew.clemons@gmail.com"
