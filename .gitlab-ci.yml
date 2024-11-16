@@ -1,7 +1,7 @@
 variables:
   FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR: "true"
   # renovate: datasource=gitlab-releases depName=gitlab-org/cli
-  GLAB_VERSION: 1.48.0
+  GLAB_VERSION: 1.49.0
   # renovate: datasource=docker depName=aclemons/sbo-maintainer-tools versioning=loose
   SBO_MAINTAINER_TOOLS_IMAGE: aclemons/sbo-maintainer-tools:0.9.3-15.0@sha256:54d3ac617994239a14748695b142d06e8ea81c4f9fbdf60a6516f0bb24332bda
 
