@@ -1,10 +1,12 @@
 PRGNAM="vscodium"
-VERSION="1.79.0.23159"
+VERSION="1.95.3.24321"
 HOMEPAGE="https://vscodium.com/"
 DOWNLOAD="UNSUPPORTED"
 MD5SUM=""
-DOWNLOAD_x86_64="https://github.com/VSCodium/vscodium/releases/download/1.79.0.23159/VSCodium-linux-x64-1.79.0.23159.tar.gz"
-MD5SUM_x86_64="e1de145b481d45909d486bcbd26d90de"
+DOWNLOAD_x86_64="https://github.com/VSCodium/vscodium/releases/download/1.95.3.24321/VSCodium-linux-x64-1.95.3.24321.tar.gz \
+                 https://github.com/VSCodium/vscodium/releases/download/1.95.3.24321/VSCodium-linux-arm64-1.95.3.24321.tar.gz"
+MD5SUM_x86_64="26dc2aa40b0795fb9d0ff304272b9f10 \
+               1f8fc7f6d2a5b6f013e42f19a648a250"
 REQUIRES=""
 MAINTAINER="rc-05"
 EMAIL="rc_o5@protonmail.com"
