@@ -21,8 +21,8 @@ pr-checks:
 
     apk add git
 
-    wget --quiet "https://gitlab.com/gitlab-org/cli/-/releases/v$GLAB_VERSION/downloads/glab_""$GLAB_VERSION""_Linux_x86_64.tar.gz"
-    tar -xf "glab_""$GLAB_VERSION""_Linux_x86_64.tar.gz" bin/glab
+    wget --quiet "https://gitlab.com/gitlab-org/cli/-/releases/v$GLAB_VERSION/downloads/glab_""$GLAB_VERSION""_linux_amd64.tar.gz"
+    tar -xf "glab_""$GLAB_VERSION""_linux_amd64.tar.gz" bin/glab
     chmod 0755 bin/glab
     mv bin/glab /usr/local/bin
     rm -rf bin
