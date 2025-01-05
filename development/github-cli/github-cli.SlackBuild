@@ -41,6 +41,8 @@ fi
 
 if [ "$ARCH" = "x86_64" ]; then
     DEBARCH="amd64"
+elif [ "$ARCH" = "aarch64" ]; then
+    DEBARCH="arm64"
 else
     DEBARCH="386"
 fi
