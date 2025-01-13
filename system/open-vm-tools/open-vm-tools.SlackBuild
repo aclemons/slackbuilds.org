@@ -26,8 +26,8 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=open-vm-tools
-VERSION=${VERSION:-11.3.5_18557794} # Remember to change VERSION - to _ !!!
-BUILD=${BUILD:-2}
+VERSION=${VERSION:-12.5.0_24276846} # Remember to change VERSION - to _ !!!
+BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 
@@ -62,12 +62,15 @@ elif [ "$ARCH" = "i686" ]; then
 elif [ "$ARCH" = "x86_64" ]; then
   SLKCFLAGS="-O2 -fPIC"
   LIBDIRSUFFIX="64"
+elif [ "$ARCH" = "aarch64" ]; then
+  SLKCFLAGS="-O2 -fPIC"
+  LIBDIRSUFFIX="64"
 else
   SLKCFLAGS="-O2"
   LIBDIRSUFFIX=""
 fi
 
-VGAUTH=${VGAUTH:-no}
+VGAUTH=${VGAUTH:-yes}
 case "$VGAUTH" in
   no)
     VGAUTH_OPTS="--disable-vgauth"
@@ -113,7 +116,7 @@ LIBS=-lcrypt \
   --mandir=/usr/man \
   --docdir=/usr/doc/$PRGNAM-$VERSION \
   --with-pam \
-  --without-x \
+  --with-x \
   $VGAUTH_OPTS \
   --build=$ARCH-slackware-linux
 
