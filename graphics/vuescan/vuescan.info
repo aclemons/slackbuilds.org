@@ -5,8 +5,8 @@ DOWNLOAD="UNSUPPORTED"
 MD5SUM=""
 DOWNLOAD_x86_64="https://d2bwyyzfw77fhf.cloudfront.net/vuea6498.tgz \
                  https://d2bwyyzfw77fhf.cloudfront.net/vuex6498.tgz"
-MD5SUM_x86_64="b34cd9883f5d7fbd3e04e5396b891c03 \
-               bdb34e1f8e804c73c1de61241c30f3af"
+MD5SUM_x86_64="99394c81a1e89fc83f5e86c2c3b7d9a8 \
+               6e6a56d1ebf36255852212189b1921f2"
 REQUIRES=""
 MAINTAINER="Andrew Clemons"
 EMAIL="andrew.clemons@gmail.com"
