@@ -3,8 +3,10 @@ VERSION="0.12.21"
 HOMEPAGE="https://github.com/astral-sh/uv"
 DOWNLOAD="https://github.com/astral-sh/uv/releases/download/0.12.21/uv-i686-unknown-linux-gnu.tar.gz"
 MD5SUM="31b186e281915800acd6bc823456da38"
-DOWNLOAD_x86_64="https://github.com/astral-sh/uv/releases/download/0.12.21/uv-x86_64-unknown-linux-gnu.tar.gz"
-MD5SUM_x86_64="053260d460d5dd9dc2bf7b728591f4cd"
+DOWNLOAD_x86_64="https://github.com/astral-sh/uv/releases/download/0.12.21/uv-x86_64-unknown-linux-gnu.tar.gz \
+                 https://github.com/astral-sh/uv/releases/download/0.12.21/uv-aarch64-unknown-linux-gnu.tar.gz"
+MD5SUM_x86_64="053260d460d5dd9dc2bf7b728591f4cd \
+               a7ae1c9bf1c7827f4d81af53e12e955a"
 REQUIRES=""
 MAINTAINER="Willy Sudiarto Raharjo"
 EMAIL="willysr@slackbuilds.org"
