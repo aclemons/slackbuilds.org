@@ -3,8 +3,10 @@ VERSION="0.8.22"
 HOMEPAGE="https://github.com/astral-sh/uv"
 DOWNLOAD="https://github.com/astral-sh/uv/releases/download/0.8.22/uv-i686-unknown-linux-gnu.tar.gz"
 MD5SUM="028c827b1b52506ab550d84d6db1afc9"
-DOWNLOAD_x86_64="https://github.com/astral-sh/uv/releases/download/0.8.22/uv-x86_64-unknown-linux-gnu.tar.gz"
-MD5SUM_x86_64="5c16024a03727cc72f46e820bc3bdf4b"
+DOWNLOAD_x86_64="https://github.com/astral-sh/uv/releases/download/0.8.22/uv-x86_64-unknown-linux-gnu.tar.gz \
+                 https://github.com/astral-sh/uv/releases/download/0.8.22/uv-aarch64-unknown-linux-gnu.tar.gz"
+MD5SUM_x86_64="5c16024a03727cc72f46e820bc3bdf4b \
+               b6e9a8947d270e52b9c35a367729723c"
 REQUIRES=""
 MAINTAINER="Willy Sudiarto Raharjo"
 EMAIL="willysr@slackbuilds.org"
