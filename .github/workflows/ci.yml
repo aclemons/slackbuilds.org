@@ -14,7 +14,7 @@ concurrency:
 
 env:
   # renovate: datasource=docker depName=aclemons/sbo-maintainer-tools versioning=loose
-  SBO_MAINTAINER_TOOLS_IMAGE: aclemons/sbo-maintainer-tools:0.9.3-15.0@sha256:2cac7227045c4f195d5cf3b0761cd0321dbad503e497b0edde29fd531c208534
+  SBO_MAINTAINER_TOOLS_IMAGE: aclemons/sbo-maintainer-tools:0.9.3-15.0@sha256:23f6f44bc8a2305ed971353c77162e53b55dc7d8ef2a359af7014ba615d389a7
 
 jobs:
   changes:
