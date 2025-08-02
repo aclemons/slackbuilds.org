@@ -10,7 +10,7 @@ workflow:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
 
 default:
-  image: docker:28.3.2@sha256:be84ce099f7ead42292ebabb539a536df0a4435646c80e50c78a55e0d4f421c5
+  image: docker:28.3.2@sha256:44383404ebf0c36243f5969f0dddd23c204ea3bb185e7473a4141f6ccfd07b53
   services:
     - docker:28.3.2-dind@sha256:be84ce099f7ead42292ebabb539a536df0a4435646c80e50c78a55e0d4f421c5
 
