@@ -3,8 +3,10 @@ VERSION="3.8.3"
 HOMEPAGE="https://github.com/jgm/pandoc"
 DOWNLOAD="UNSUPPORTED"
 MD5SUM=""
-DOWNLOAD_x86_64="https://github.com/jgm/pandoc/releases/download/3.8.3/pandoc-3.8.3-1-amd64.deb"
-MD5SUM_x86_64="a1ffc028a839db623bfbd0465abd58a1"
+DOWNLOAD_x86_64="https://github.com/jgm/pandoc/releases/download/3.8.3/pandoc-3.8.3-1-amd64.deb \
+                 https://github.com/jgm/pandoc/releases/download/3.8.3/pandoc-3.8.3-1-arm64.deb"
+MD5SUM_x86_64="a1ffc028a839db623bfbd0465abd58a1 \
+               9319a5d200a8a61a74f62508b7a88c0a"
 REQUIRES=""
 MAINTAINER="Andrew Payne"
 EMAIL="phalange@komputermatrix.com"
