@@ -50,10 +50,13 @@ PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
 # Abort build if architecture is not 64-bit.
-if [ "$ARCH" != "x86_64" ]; then
+if [ "$ARCH" = "x86_64" ] ; then
+  DEBARCH="amd64"
+elif [ "$ARCH" = "aarch64" ] ; then
+  DEBARCH="arm64"
+else
   echo "$ARCH is not supported."
   exit 1
-else DEBARCH="amd64"
 fi
 
 set -e
