@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+     |-----handy-ruler------------------------------------------------------|
+gonzo: gonzo (the Go based TUI log analysis tool)
+gonzo:
+gonzo: A powerful, real-time log analysis terminal UI inspired by k9s.
+gonzo: Analyze log streams with beautiful charts, AI-powered insights, and
+gonzo: advanced filtering - all from your terminal.
+gonzo:
+gonzo:
+gonzo: https://github.com/control-theory/gonzo
+gonzo:
+gonzo:
+gonzo:
