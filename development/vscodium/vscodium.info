@@ -3,8 +3,10 @@ VERSION="1.108.10359"
 HOMEPAGE="https://vscodium.com/"
 DOWNLOAD="UNSUPPORTED"
 MD5SUM=""
-DOWNLOAD_x86_64="https://github.com/VSCodium/vscodium/releases/download/1.108.10359/VSCodium-linux-x64-1.108.10359.tar.gz"
-MD5SUM_x86_64="42e81fb3dc4216f4f8bdec4858b1ebf5"
+DOWNLOAD_x86_64="https://github.com/VSCodium/vscodium/releases/download/1.108.10359/VSCodium-linux-x64-1.108.10359.tar.gz \
+                 https://github.com/VSCodium/vscodium/releases/download/1.108.10359/VSCodium-linux-arm64-1.108.10359.tar.gz"
+MD5SUM_x86_64="42e81fb3dc4216f4f8bdec4858b1ebf5 \
+               f8c3d098831ea64cd388454024e6ccdb"
 REQUIRES=""
 MAINTAINER="Ferenc Kurucz"
 EMAIL="ferenc.kurucz.6351@gmail.com"
