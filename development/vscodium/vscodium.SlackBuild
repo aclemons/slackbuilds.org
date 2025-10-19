@@ -63,9 +63,9 @@ rm -rf $PRGNAM-$VERSION
 # Creates a directory to extract the files into a suitable directory as the
 # original archive doesn't contain a directory.
 mkdir $PRGNAM-$VERSION
-if [ "$ARCH" != "x86_64" ] ; then
+if [ "$ARCH" == "x86_64" ] ; then
   tar xvf $CWD/VSCodium-linux-x64-$VERSION.tar.gz -C $PRGNAM-$VERSION
-elif [ "$ARCH" != "aarch64" ] ; then
+elif [ "$ARCH" == "aarch64" ] ; then
   tar xvf $CWD/VSCodium-linux-arm64-$VERSION.tar.gz -C $PRGNAM-$VERSION
 else
   exit 1
