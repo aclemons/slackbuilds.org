@@ -3,7 +3,7 @@ variables:
   # renovate: datasource=gitlab-releases depName=gitlab-org/cli
   GLAB_VERSION: 1.68.0
   # renovate: datasource=docker depName=aclemons/sbo-maintainer-tools versioning=loose
-  SBO_MAINTAINER_TOOLS_IMAGE: aclemons/sbo-maintainer-tools:0.9.3-15.0@sha256:ff65b2ae5c6d61bd7c366ff3a36bba7f7df22703134d6ebf355f07592f5b3de4
+  SBO_MAINTAINER_TOOLS_IMAGE: aclemons/sbo-maintainer-tools:0.9.3-15.0@sha256:dc613a6449aff1fc367e9634a3880a859ee82ab515f1d54a36b205161f91c6ca
 
 workflow:
   rules:
