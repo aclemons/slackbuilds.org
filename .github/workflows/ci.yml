@@ -27,7 +27,7 @@ jobs:
       - name: Calculate clone depth.
         run: printf "CHECKOUT_FETCH_DEPTH=%s\n" "$(( ${{ github.event.pull_request.commits }} + 1 ))" >> "${GITHUB_ENV}"
 
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           show-progress: false
           fetch-depth: ${{ env.CHECKOUT_FETCH_DEPTH }}
@@ -65,7 +65,7 @@ jobs:
       matrix:
         include: ${{ fromJSON(needs.changes.outputs.matrix) }}
     steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           show-progress: false
           ref: ${{ github.head_ref }}
@@ -128,7 +128,7 @@ jobs:
       matrix:
         include: ${{ fromJSON(needs.changes.outputs.matrix) }}
     steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           show-progress: false
           ref: ${{ github.head_ref }}
