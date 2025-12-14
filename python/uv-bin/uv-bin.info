@@ -1,12 +1,12 @@
 PRGNAM="uv-bin"
-VERSION="0.9.13"
+VERSION="0.9.17"
 HOMEPAGE="https://github.com/astral-sh/uv"
-DOWNLOAD="https://github.com/astral-sh/uv/releases/download/0.9.13/uv-i686-unknown-linux-gnu.tar.gz"
-MD5SUM="f9d0eb90406811891547145a1560d364"
-DOWNLOAD_x86_64="https://github.com/astral-sh/uv/releases/download/0.9.13/uv-x86_64-unknown-linux-gnu.tar.gz \
-                 https://github.com/astral-sh/uv/releases/download/0.9.13/uv-aarch64-unknown-linux-gnu.tar.gz"
-MD5SUM_x86_64="1d7b113a1bd7823aa206e45ed09b289d \
-               bfc7e1340e9c394eadc9a45f9d14455e"
+DOWNLOAD="https://github.com/astral-sh/uv/releases/download/0.9.17/uv-i686-unknown-linux-gnu.tar.gz"
+MD5SUM="3a37bafec4e4c7b0e23e8defe9652c6c"
+DOWNLOAD_x86_64="https://github.com/astral-sh/uv/releases/download/0.9.17/uv-x86_64-unknown-linux-gnu.tar.gz \
+                 https://github.com/astral-sh/uv/releases/download/0.9.17/uv-aarch64-unknown-linux-gnu.tar.gz"
+MD5SUM_x86_64="599d9b9a6edd1a5e842ee7aa3840f192 \
+               441092b9044c9fd662e1bbb9e0e69528"
 REQUIRES=""
 MAINTAINER="Willy Sudiarto Raharjo"
 EMAIL="willysr@slackbuilds.org"
