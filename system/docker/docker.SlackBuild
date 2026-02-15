@@ -66,13 +66,11 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-AUTO_GOPATH=1 \
-GO111MODULE=off \
-DOCKER_GITCOMMIT=$GITHASH \
-DOCKER_BUILDTAGS="seccomp" \
-VERSION=$VERSION \
-GOPATH="$(pwd)" \
-./hack/make.sh dynbinary
+export AUTO_GOPATH=1
+export DOCKER_GITCOMMIT=$GITHASH
+export DOCKER_BUILDTAGS="seccomp"
+export DISABLE_WARN_OUTSIDE_CONTAINER=1
+VERSION=$VERSION ./hack/make.sh dynbinary
 
 (
   cd man
