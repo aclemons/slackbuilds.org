@@ -74,6 +74,9 @@ fi
 if [ "$ARCH" = "x86_64" ]; then
   SRCARCH="x86-64"
   PKGARCH="$ARCH"
+elif [ "$ARCH" = "aarch64" ]; then
+  SRCARCH="$ARCH"
+  PKGARCH="$ARCH"
 elif [ "$ARCH" = "arm" ]; then
   printf "\n$ARCH is unsupported for LibreOffice...\n\n"
   exit 1
