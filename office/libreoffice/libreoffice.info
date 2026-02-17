@@ -3,8 +3,10 @@ VERSION="25.8.4"
 HOMEPAGE="https://www.libreoffice.org"
 DOWNLOAD="UNSUPPORTED"
 MD5SUM=""
-DOWNLOAD_x86_64="https://download.documentfoundation.org/libreoffice/stable/25.8.4/rpm/x86_64/LibreOffice_25.8.4_Linux_x86-64_rpm.tar.gz"
-MD5SUM_x86_64="fc56a7ffdf22b00e6134d5a970218666"
+DOWNLOAD_x86_64="https://download.documentfoundation.org/libreoffice/stable/25.8.4/rpm/x86_64/LibreOffice_25.8.4_Linux_x86-64_rpm.tar.gz \
+                 https://download.documentfoundation.org/libreoffice/stable/25.8.4/rpm/aarch64/LibreOffice_25.8.4_Linux_aarch64_rpm.tar.gz"
+MD5SUM_x86_64="fc56a7ffdf22b00e6134d5a970218666 \
+               50a6a45299b39a8b6b15c3636a5751f0"
 REQUIRES="zulu-openjdk17 avahi"
 MAINTAINER="Willy Sudiarto Raharjo"
 EMAIL="willysr@slackbuilds.org"
