@@ -6,7 +6,3 @@ Optional dependencies:
    gspell
    gst-plugins-ugly
    gst-plugins-bad-nonfree
-
-Note that 1.5.4 is the last version to support Python 3.9, so there
-will be no more updates of this slackbuild until the next Slackware
-release.
