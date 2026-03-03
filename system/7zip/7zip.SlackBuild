@@ -52,6 +52,7 @@ set -e
 case "$ARCH" in
   "i586") makefile_name="cmpl_gcc_x86.mak" ;;
   "x86_64") makefile_name="cmpl_gcc_x64.mak" ;;
+  "aarch64") makefile_name="cmpl_gcc_arm64.mak" ;;
   *)        makefile_name="cmpl_gcc_${ARCH}.mak" ;;
 esac
 
