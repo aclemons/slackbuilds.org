@@ -27,7 +27,6 @@ cd $(dirname $0) ; CWD=$(pwd)
 PRGNAM=vscode-bin
 SRCNAM=code-stable
 VERSION=${VERSION:-1.120.0}
-SRCVER=1773778270
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -49,14 +48,30 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
+# Bail out when building the Slackbuild on non-x86_64 arch.
+if [ "$ARCH" != "x86_64" ] && [ "$ARCH" != "aarch64" ] ; then
+  echo "Unsupported on $ARCH"
+  exit 1
+fi
+
 set -e
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-rm -rf VSCode-linux-x64
-tar xvf $CWD/$SRCNAM-x64-$SRCVER.tar.gz
-cd VSCode-linux-x64
+if [ "$ARCH" == "x86_64" ] ; then
+  SRCVER=1773778270
+  rm -rf VSCode-linux-x64
+  tar xvf $CWD/$SRCNAM-x64-$SRCVER.tar.gz
+  cd VSCode-linux-x64
+elif [ "$ARCH" == "aarch64" ] ; then
+  rm -rf VSCode-linux-arm64
+  SRCVER=1773778229
+  tar xvf $CWD/$SRCNAM-arm64-$SRCVER.tar.gz
+  cd VSCode-linux-arm64
+else
+  exit 1
+fi
 chown -R root:root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
