@@ -3,6 +3,8 @@
 # Slackware build script for prosody
 
 # Copyright 2013, Andrew Tkalia <anddt@yandex.ru>, Ukraine, Kyiv
+# Copyright 2015-2025, Gerardo Zamudio <gerardo.zamudio@linux.com>
+# Copyright 2026, Andrew Clemons, Tokyo Japan
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -22,7 +24,6 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# Maintained by Gerardo Zamudio <gerardo.zamudio@linux.com>
 
 # 20241024 bkw: Modified by SlackBuilds.org, BUILD=2:
 # - bump BUILD due to lua upgrade to 5.4; no other changes.
@@ -30,7 +31,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=prosody
-VERSION=${VERSION:-0.12.5}
+VERSION=${VERSION:-13.0.6}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -57,11 +58,11 @@ OUTPUT=${OUTPUT:-/tmp}
 
 # Bail out if user or group isn't valid on your system
 # Let prosody uid/gid be 274/274 :)
-if ! grep ^prosody: /etc/group 2>&1 > /dev/null; then
+if ! grep ^prosody: /etc/group > /dev/null 2>&1 ; then
   echo "  You must have a prosody group to run this script."
   echo "    # groupadd -g $PROSODY_GID prosody"
   exit 1
-elif ! grep ^prosody: /etc/passwd 2>&1 > /dev/null; then
+elif ! grep ^prosody: /etc/passwd > /dev/null 2>&1 ; then
   echo "  You must have a prosody user to run this script."
   echo "    # useradd -u $PROSODY_UID -g $PROSODY_GID -s /sbin/nologin -d /var/lib/prosody prosody"
   exit 1
@@ -106,7 +107,8 @@ find -L . \
   --with-lua-lib=/usr/lib${LIBDIRSUFFIX} \
   --with-lua-include=/usr/include \
   --libdir=/usr/lib${LIBDIRSUFFIX} \
-  --cflags="-fPIC -Wall ${SLKCFLAGS}"
+  --cflags="-fPIC -Wall ${SLKCFLAGS}" \
+  --no-example-certs
 
 make
 make install \
@@ -114,12 +116,13 @@ make install \
   MAN="${PKG}/usr/man"
 
 # Install migrator.
-cd tools/migration
+(
+  cd tools/migration
   make
   make install \
     DESTDIR=$PKG \
     MAN="${PKG}/usr/man"
-cd -
+)
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
@@ -131,6 +134,8 @@ mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a AUTHORS CHANGES INSTALL COPYING DEPENDS README HACKERS TODO doc/*.* tools/*.lua \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+rm -- "$PKG"/etc/prosody/certs/*
 
 chown -R prosody:prosody $PKG/var/lib/prosody
 chmod 700 $PKG/var/lib/prosody
