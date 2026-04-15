@@ -26,8 +26,9 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=slackroll
-VERSION=${VERSION:-v55}
-SRCVER=${VERSION#v}
+VERSION=${VERSION:-git7e8e561}
+SRCVER=${SRCVER:-7e8e5614fa2917ae8aebf39854297ef06d89739e}
+TAGVER=${TAGVER:-v55}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -51,7 +52,7 @@ cd $TMP
 rm -rf $PRGNAM-$SRCVER
 tar xvf $CWD/$PRGNAM-$SRCVER.tar.gz
 cd $PRGNAM-$SRCVER
-chown -R root:root .
+# chown -R root:root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
   -o -perm 511 \) -exec chmod 755 {} \; -o \
@@ -69,11 +70,11 @@ install -m 644 slackroll.1 $PKG/usr/man/man1
 find $PKG/usr/man -type f -exec gzip -9 {} \;
 for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
 
-mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+mkdir -p $PKG/usr/doc/$PRGNAM-$TAGVER
 cp -a \
   COPYING helpfiles \
-  $PKG/usr/doc/$PRGNAM-$VERSION
-cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+  $PKG/usr/doc/$PRGNAM-$TAGVER
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$TAGVER/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
