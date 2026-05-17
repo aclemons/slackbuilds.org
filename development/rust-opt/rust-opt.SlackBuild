@@ -93,7 +93,7 @@ find $PKG/opt/$SRCNAM/lib -type f -name "*.so" -exec chmod +x {} \; 2> /dev/null
 find $PKG/opt/$SRCNAM/lib -type f -name "*.so*stable" -exec chmod +x {} \; 2> /dev/null
 
 # Stripping the libraries causes memory faults on Slackware64-15.0.
-if [ $ARCH = "x86_64" ]; then
+if [ $ARCH = "x86_64" ] || [ "$ARCH" = "aarch64" ] ; then
   find $PKG -print0 | xargs -0 file | grep "executable" | grep ELF \
     | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 else
