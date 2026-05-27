@@ -66,7 +66,7 @@ if [ "$ARCH" == "x86_64" ] ; then
   cd VSCode-linux-x64
 elif [ "$ARCH" == "aarch64" ] ; then
   rm -rf VSCode-linux-arm64
-  SRCVER=1780040715
+  SRCVER=1782207906
   tar xvf $CWD/$SRCNAM-arm64-$SRCVER.tar.gz
   cd VSCode-linux-arm64
 else

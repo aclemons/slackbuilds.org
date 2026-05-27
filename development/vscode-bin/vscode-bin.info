@@ -3,8 +3,10 @@ VERSION="1.126.0"
 HOMEPAGE="https://code.visualstudio.com/"
 DOWNLOAD="UNSUPPORTED"
 MD5SUM=""
-DOWNLOAD_x86_64="https://vscode.download.prss.microsoft.com/dbazure/download/stable/7e7950df89d055b5a378379db9ee14290772148a/code-stable-x64-1782207956.tar.gz"
-MD5SUM_x86_64="9f2153259fdb8e339586102502c3d5ca"
+DOWNLOAD_x86_64="https://vscode.download.prss.microsoft.com/dbazure/download/stable/7e7950df89d055b5a378379db9ee14290772148a/code-stable-x64-1782207956.tar.gz \
+                 https://vscode.download.prss.microsoft.com/dbazure/download/stable/7e7950df89d055b5a378379db9ee14290772148a/code-stable-arm64-1782207906.tar.gz"
+MD5SUM_x86_64="9f2153259fdb8e339586102502c3d5ca \
+               4e4991fd136f3b6a8c658074dee5af66"
 REQUIRES=""
 MAINTAINER="Willy Sudiarto Raharjo"
 EMAIL="willysr@slackbuilds.org"
