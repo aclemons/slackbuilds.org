@@ -72,8 +72,18 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
+mkdir -p $PKG/opt/claude-code/bin
+install -Dm755 claude "$PKG/opt/claude-code/bin/claude"
+
 mkdir -p $PKG/usr/bin
-cp claude $PKG/usr/bin/
+cat > "$PKG/usr/bin/claude" << 'EOF'
+#!/bin/sh
+export DISABLE_UPDATES=1
+export DISABLE_INSTALLATION_CHECKS=1
+exec /opt/claude-code/bin/claude "$@"
+EOF
+
+chmod 755 "$PKG/usr/bin/claude"
 
 # Do NOT strip: 'claude' is a Bun-compiled single-file executable.
 # Stripping discards the embedded payload, leaving it to run as the
