@@ -1,10 +1,12 @@
 PRGNAM="claude-code"
-VERSION="2.1.161"
+VERSION="2.1.195"
 HOMEPAGE="https://github.com/anthropics/claude-code"
 DOWNLOAD="UNSUPPORTED"
 MD5SUM=""
-DOWNLOAD_x86_64="https://registry.npmjs.org/@anthropic-ai/claude-code-linux-x64/-/claude-code-linux-x64-2.1.161.tgz"
-MD5SUM_x86_64="094723aa09537cc589f80bc02103c862"
+DOWNLOAD_x86_64="https://registry.npmjs.org/@anthropic-ai/claude-code-linux-x64/-/claude-code-linux-x64-2.1.195.tgz \
+                 https://registry.npmjs.org/@anthropic-ai/claude-code-linux-arm64/-/claude-code-linux-arm64-2.1.195.tgz"
+MD5SUM_x86_64="03cabdf6d760d5f1b951b8a62db9d5f6 \
+              09a761e7434393191cc2bcb9a37ac8bb"
 REQUIRES=""
 MAINTAINER="Nicholas B. Hubbard"
 EMAIL="nicholashubbard@posteo.net"
