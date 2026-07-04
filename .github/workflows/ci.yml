@@ -77,6 +77,7 @@ jobs:
             set -e
 
             slug="${project//\//:}"
+            file_slug="${project//\//--}"
             {
               printf '<!-- ci:sbolint:%s -->\n' "$slug"
               if [[ "$sbolint_status" -eq 0 ]] ; then
@@ -88,7 +89,7 @@ jobs:
               printf '```\n'
               cat sbolint-output
               printf '```\n'
-            } > "comments/sbolint-${slug}.md"
+            } > "comments/sbolint-${file_slug}.md"
 
             rm -f sbolint-output
           done <<< "$changed_projects"
@@ -102,6 +103,7 @@ jobs:
             response="$(wget -q -O - "https://slackbuilds.org/revdeps.php?q=$short_project" | sort || true)"
 
             slug="${project//\//:}"
+            file_slug="${project//\//--}"
             {
               printf '<!-- ci:reverse-deps:%s -->\n' "$slug"
               printf '#### reverse dependencies - %s\n\n' "$project"
@@ -110,12 +112,12 @@ jobs:
               else
                 printf '%s\n' "$response" | sort | sed 's/^/- [ ] /'
               fi
-            } > "comments/reverse-deps-${slug}.md"
+            } > "comments/reverse-deps-${file_slug}.md"
           done <<< "$changed_projects"
 
       - name: Upload comment bodies
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: pr-comments
           path: comments/
