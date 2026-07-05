@@ -1,14 +1,55 @@
 PRGNAM="cw"
 VERSION="4.1.3"
 HOMEPAGE="https://github.com/lucagrulla/cw"
-DOWNLOAD="https://github.com/lucagrulla/cw/releases/download/v4.1.3/cw_4.1.3_Linux_i386.tar.gz \
-         https://github.com/lucagrulla/cw/releases/download/v4.1.3/cw_4.1.3_Linux_armv6.tar.gz"
-MD5SUM="275a1064db86335badafb944cd50a35a \
-        9474fe382668991a1b6f7760b4da0da9"
-DOWNLOAD_x86_64="https://github.com/lucagrulla/cw/releases/download/v4.1.3/cw_4.1.3_Linux_x86_64.tar.gz \
-                 https://github.com/lucagrulla/cw/releases/download/v4.1.3/cw_4.1.3_Linux_arm64.tar.gz"
-MD5SUM_x86_64="d7424fd11f775a96b65d4315e0909d28 \
-               7e9945a40a99a1ccff69b8d85e415ac4"
-REQUIRES=""
+DOWNLOAD="https://github.com/lucagrulla/cw/archive/v4.1.3/cw-4.1.3.tar.gz \
+          https://github.com/alecthomas/kong/archive/v0.7.1/kong-0.7.1.tar.gz \
+          https://github.com/aws/aws-sdk-go-v2/archive/v1.17.8/aws-sdk-go-v2-1.17.8.tar.gz \
+          https://github.com/aws/aws-sdk-go-v2/archive/config/v1.18.21/aws-sdk-go-v2-config-v1.18.21.tar.gz \
+          https://github.com/aws/aws-sdk-go-v2/archive/credentials/v1.13.20/aws-sdk-go-v2-credentials-v1.13.20.tar.gz \
+          https://github.com/aws/aws-sdk-go-v2/archive/feature/ec2/imds/v1.13.2/aws-sdk-go-v2-feature-ec2-imds-v1.13.2.tar.gz \
+          https://github.com/aws/aws-sdk-go-v2/archive/internal/configsources/v1.1.32/aws-sdk-go-v2-internal-configsources-v1.1.32.tar.gz \
+          https://github.com/aws/aws-sdk-go-v2/archive/internal/endpoints/v2.4.26/aws-sdk-go-v2-internal-endpoints-v2.4.26.tar.gz \
+          https://github.com/aws/aws-sdk-go-v2/archive/internal/ini/v1.3.33/aws-sdk-go-v2-internal-ini-v1.3.33.tar.gz \
+          https://github.com/aws/aws-sdk-go-v2/archive/service/cloudwatchlogs/v1.20.9/aws-sdk-go-v2-service-cloudwatchlogs-v1.20.9.tar.gz \
+          https://github.com/aws/aws-sdk-go-v2/archive/service/internal/presigned-url/v1.9.26/aws-sdk-go-v2-service-internal-presigned-url-v1.9.26.tar.gz \
+          https://github.com/aws/aws-sdk-go-v2/archive/service/sso/v1.12.8/aws-sdk-go-v2-service-sso-v1.12.8.tar.gz \
+          https://github.com/aws/aws-sdk-go-v2/archive/service/ssooidc/v1.14.8/aws-sdk-go-v2-service-ssooidc-v1.14.8.tar.gz \
+          https://github.com/aws/aws-sdk-go-v2/archive/service/sts/v1.18.9/aws-sdk-go-v2-service-sts-v1.18.9.tar.gz \
+          https://github.com/aws/smithy-go/archive/v1.13.5/smithy-go-1.13.5.tar.gz \
+          https://github.com/davecgh/go-spew/archive/v1.1.1/go-spew-1.1.1.tar.gz \
+          https://github.com/fatih/color/archive/v1.15.0/color-1.15.0.tar.gz \
+          https://github.com/jmespath/go-jmespath/archive/v0.4.0/go-jmespath-0.4.0.tar.gz \
+          https://github.com/mattn/go-colorable/archive/v0.1.13/go-colorable-0.1.13.tar.gz \
+          https://github.com/mattn/go-isatty/archive/v0.0.17/go-isatty-0.0.17.tar.gz \
+          https://github.com/pmezard/go-difflib/archive/v1.0.0/go-difflib-1.0.0.tar.gz \
+          https://github.com/stretchr/testify/archive/v1.8.2/testify-1.8.2.tar.gz \
+          https://github.com/golang/sys/archive/v0.7.0/sys-0.7.0.tar.gz \
+          https://github.com/go-yaml/yaml/archive/v3.0.1/yaml-3.0.1.tar.gz"
+MD5SUM="6a521e7010341bd546a33db8b0fedc51 \
+        1a22e046a7ed27e679e5091d09edbed3 \
+        a5e028bcff2e29878de0ad3f8a03a249 \
+        38e2a636d50a217f1e192c5a00e0636f \
+        7bca485d2a27d92d720e34043c6070e8 \
+        6a10ecef69144dec93acd25cb7125366 \
+        9af82f90f0cd94371afb40a13144a8f2 \
+        6aa2a3f2e39703320774e85f17222184 \
+        4ade108b783528d6474300be033f64bd \
+        85a66ce8bb5b61a629dcf4ac41889acd \
+        33a00addd7122a821a6f6028cf71ea87 \
+        9ceeb05732e758ea7635d1fd74f41da9 \
+        b7791cc6772b9034516b69e5e2ec9a18 \
+        49eb9618d56f18b7eb8d6cdf623f6b24 \
+        5a709d59033ca000f607b8500a1e1646 \
+        fa67071c68b7f8a2b8b9cb7b70c4c271 \
+        bbcacdbbcd5aa2ce8c9452e0e27dd506 \
+        a231f7a93d2e830c345be40b2d831fe2 \
+        ac74020d881d4966e33ab6580f509aeb \
+        aa907df23bb8877028111b14177f9e5d \
+        56e81fe945d04771dcb79964ce958a5f \
+        c0cbcae2d3ce43de1dfa071ab34a4037 \
+        aefd0f2c86a23ff5cae247a3821944f8 \
+        3653fca1491a8b432d590ed3dab3aa77"
+MD5SUM_x86_64=""
+REQUIRES="google-go-lang"
 MAINTAINER="Andrew Clemons"
 EMAIL="andrew.clemons@gmail.com"
