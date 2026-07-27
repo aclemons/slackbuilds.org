@@ -74,7 +74,16 @@ rm -rf $SRCNAM $BOOTSTRAPNAM
 tar xf $CWD/$SRCNAM.tar.xz
 tar xf $CWD/$BOOTSTRAPNAM.tar.xz
 chown -R root:root $SRCNAM $BOOTSTRAPNAM
+
+if [ "$ARCH" = "i586" ] || [ "$ARCH" = "i686" ]; then
+  sed -i 's/\.max_rss = [0-9_]*,/\.max_rss = @min(2_000_000_000, std.math.maxInt(usize)),/g' $SRCNAM/build.zig $BOOTSTRAPNAM/zig/build.zig
+  sed -i 's/\.available_rss = max_rss,/\.available_rss = @intCast(@min(max_rss, std.math.maxInt(usize))),/g' $SRCNAM/lib/compiler/build_runner.zig $BOOTSTRAPNAM/zig/lib/compiler/build_runner.zig
+  sed -i 's/run\.available_rss = process\.totalSystemMemory().*;/run.available_rss = @intCast(@min(process.totalSystemMemory() catch std.math.maxInt(u64), std.math.maxInt(usize)));/g' $SRCNAM/lib/compiler/build_runner.zig $BOOTSTRAPNAM/zig/lib/compiler/build_runner.zig
+  sed -i 's/gpa.realloc(old_buf, new_len)/gpa.realloc(old_buf, @intCast(new_len))/g' $SRCNAM/lib/std/Build/WebServer.zig $BOOTSTRAPNAM/zig/lib/std/Build/WebServer.zig
+fi
+
 cd $BOOTSTRAPNAM
+patch -p1 < "$CWD/fix-x86.zig-asm-percent-comments.patch"
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
   -o -perm 511 \) -exec chmod 755 {} \; -o \
@@ -87,6 +96,9 @@ case ${NUMJOBS:-} in
   ''|*[!0-9]*) ;;
   *) export CMAKE_BUILD_PARALLEL_LEVEL=$NUMJOBS ;;
 esac
+
+export CMAKE_BUILD_TYPE=Release
+
 ./build $TARGET $MCPU
 
 install -Dm 755 out/zig-$TARGET-$MCPU/zig $PKG/usr/bin/zig
