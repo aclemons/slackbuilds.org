@@ -1,0 +1,14 @@
+diff -Naur zig-bootstrap-0.16.0.orig/zig/lib/std/os/linux/x86.zig zig-bootstrap-0.16.0/zig/lib/std/os/linux/x86.zig
+--- zig-bootstrap-0.16.0.orig/zig/lib/std/os/linux/x86.zig	2026-04-14 03:52:28.000000000 +0900
++++ zig-bootstrap-0.16.0/zig/lib/std/os/linux/x86.zig	2026-07-27 20:04:24.142829449 +0900
+@@ -80,8 +80,8 @@
+         \\ push %%ebp
+         \\ mov 4(%%esp), %%ebp
+         \\ mov %%edi, 4(%%esp)
+-        \\ // The saved %edi and %ebp are on the stack, and %ebp points to `args56`.
+-        \\ // Prepare the last two args, syscall, then pop the saved %ebp and %edi.
++        \\ // Saved edi and ebp are on the stack, and ebp points to `args56`.
++        \\ // Prepare the last two args, syscall, then pop saved ebp and edi.
+         \\ mov (%%ebp), %%edi
+         \\ mov 4(%%ebp), %%ebp
+         \\ int  $0x80
