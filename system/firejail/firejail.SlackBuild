@@ -26,7 +26,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=firejail
-VERSION=${VERSION:-0.9.80}
+VERSION=${VERSION:-git0e7b933}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -67,9 +67,9 @@ set -e
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-$VERSION.tar.xz
-cd $PRGNAM-$VERSION
+rm -rf $PRGNAM-0e7b933b9d35203d4139e2beabf18166e4c355af
+tar xvf $CWD/$PRGNAM-0e7b933b9d35203d4139e2beabf18166e4c355af.tar.gz
+cd $PRGNAM-0e7b933b9d35203d4139e2beabf18166e4c355af
 chown -R root:root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
