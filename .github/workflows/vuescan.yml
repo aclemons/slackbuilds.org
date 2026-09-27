@@ -9,7 +9,7 @@ name: Sync vuescan MD5SUM values.
 
 jobs:
   vuescan:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: write
     if: contains(fromJSON('["aclemons/slackbuilds.org"]'), github.repository)
