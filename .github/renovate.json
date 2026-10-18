@@ -25,6 +25,7 @@
     {
       "customType": "regex",
       "managerFilePatterns": [
+        "/^\\.forgejo\\/workflows\\/ci\\.yml$/",
         "/^\\.github\\/workflows\\/ci\\.yml$/",
         "/^\\.gitlab-ci\\.yml/"
       ],
