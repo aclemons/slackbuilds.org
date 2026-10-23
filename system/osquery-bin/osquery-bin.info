@@ -1,12 +1,12 @@
 PRGNAM="osquery-bin"
-VERSION="5.23.1"
+VERSION="5.24.0"
 HOMEPAGE="https://osquery.io/"
 DOWNLOAD="UNSUPPORTED"
 MD5SUM=""
-DOWNLOAD_x86_64="https://github.com/osquery/osquery/releases/download/5.23.1/osquery_5.23.1-1.linux_amd64.deb \
-                 https://github.com/osquery/osquery/releases/download/5.23.1/osquery_5.23.1-1.linux_arm64.deb"
-MD5SUM_x86_64="bdafed3abe16db35be4ce78c716275d6 \
-               0d3ee0fa3803bc3d91932a4c9cbc8e27"
+DOWNLOAD_x86_64="https://github.com/osquery/osquery/releases/download/5.24.0/osquery_5.24.0-1.linux_amd64.deb \
+                 https://github.com/osquery/osquery/releases/download/5.24.0/osquery_5.24.0-1.linux_arm64.deb"
+MD5SUM_x86_64="6ef6956ad7866557255d16aa48060e0e \
+               d5224ef164acb389660692b5867a53ed"
 REQUIRES=""
 MAINTAINER="Andrew Clemons"
 EMAIL="andrew.clemons@gmail.com"
